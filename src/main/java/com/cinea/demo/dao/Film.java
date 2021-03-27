@@ -4,13 +4,23 @@ public class Film {
 
     private Long id;
     private String title;
+    private String cinema;
 
-    public Film() {
+    public String getCinema() {
+        return cinema;
     }
 
-    public Film(Long id, String title) {
+    public void setCinema(String cinema) {
+        this.cinema = cinema;
+    }
+
+    public Film(Long id, String title, String cinema) {
         this.id = id;
         this.title = title;
+        this.cinema = cinema;
+    }
+
+    public Film() {
     }
 
     public Long getId() {

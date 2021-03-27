@@ -16,8 +16,8 @@ public class FilmApi {
 
     public FilmApi() {
         films = new ArrayList<>();
-        films.add(new Film(1L,"Film1"));
-        films.add(new Film(2L,"Film2"));
+        films.add(new Film(1L,"Film1","Kraków - Galeria Krakowska"));
+        films.add(new Film(2L,"Film2","Kraków - Galeria Bronowice"));
     }
 
     @GetMapping("/all") //http://localhost:8080/api/films/all

@@ -1,6 +1,8 @@
 package com.cinea.demo.api;
 
-import com.cinea.demo.dao.Film;
+import com.cinea.demo.dao.entity.Film;
+import com.cinea.demo.manager.FilmManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,38 +14,38 @@ import java.util.Optional;
 @CrossOrigin
 public class FilmApi {
 
-    private List<Film> films; //zanim zbuduje baze bede mial liste
 
-    public FilmApi() {
-        films = new ArrayList<>();
-        films.add(new Film(1L,"Film1"));
-        films.add(new Film(2L,"Film2"));
+    private FilmManager films;
+
+    @Autowired
+    public FilmApi(FilmManager films) {
+        this.films = films;
     }
 
     @GetMapping("/all") //http://localhost:8080/api/films/all
-    public List<Film> getAll(){
-        return films;
+    public Iterable<Film> getAll(){
+        return films.findAll();
     }
 
     @GetMapping
-    public Film getById(@RequestParam int index){
-        Optional<Film> first = films.stream().filter(element -> element.getId() == index).findFirst();
-        return first.get();
+    public Optional<Film> getById(@RequestParam Long index){
+
+        return films.findById(index);
     }
 
     @PostMapping
-    public boolean addVideo(@RequestBody Film film){
-        return films.add(film);
+    public Film addVideo(@RequestBody Film film){
+        return films.save(film);
     }
 
     @PutMapping //przebudowuje elementy
-    public boolean updateVideo(@RequestBody Film film){
-        return films.add(film);
+    public Film updateVideo(@RequestBody Film film){
+        return films.save(film);
     }
 
     @DeleteMapping
-    public boolean deleteVideo(@RequestParam int index){
-        return films.removeIf(element -> element.getId() == index);
+    public void deleteVideo(@RequestParam Long index){
+        films.deleteById(index);
     }
 
 }

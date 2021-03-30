@@ -12,8 +12,9 @@ public class FilmDetails {
     @Column(name = "id_film_details")
     private Long id;
 
-    @Column(name = "id_category")
-    private Long idCategory;
+    @OneToOne
+    @JoinColumn(name = "id_category")
+    private Categories category;
 
     @Column(name = "title")
     private String title;
@@ -24,9 +25,7 @@ public class FilmDetails {
     public FilmDetails() {
     }
 
-    public FilmDetails(Long id, Long idCategory, String title, String description) {
-        this.id = id;
-        this.idCategory = idCategory;
+    public FilmDetails(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -37,14 +36,6 @@ public class FilmDetails {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(Long idCategory) {
-        this.idCategory = idCategory;
     }
 
     public String getTitle() {

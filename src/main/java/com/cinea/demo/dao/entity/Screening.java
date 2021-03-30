@@ -12,11 +12,13 @@ public class Screening {
     @Column(name = "id_screening")
     private Long id;
 
-    @Column(name = "id_film")
-    private Long idFillm;
+    @OneToOne
+    @JoinColumn(name = "id_film")
+    private Film film;
 
-    @Column(name = "id_room")
-    private Long idRoom;
+    @OneToOne
+    @JoinColumn(name = "id_room")
+    private Room room;
 
     @Column(name = "date")
     private String date;//TODO zmienić na Date
@@ -24,10 +26,7 @@ public class Screening {
     public Screening() {
     }
 
-    public Screening(Long id, Long idFillm, Long idRoom, String date) {
-        this.id = id;
-        this.idFillm = idFillm;
-        this.idRoom = idRoom;
+    public Screening(String date) {
         this.date = date;
     }
 
@@ -37,22 +36,6 @@ public class Screening {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdFillm() {
-        return idFillm;
-    }
-
-    public void setIdFillm(Long idFillm) {
-        this.idFillm = idFillm;
-    }
-
-    public Long getIdRoom() {
-        return idRoom;
-    }
-
-    public void setIdRoom(Long idRoom) {
-        this.idRoom = idRoom;
     }
 
     public String getDate() {

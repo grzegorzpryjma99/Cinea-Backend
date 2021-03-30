@@ -11,9 +11,6 @@ public class Place {
     @Column(name = "id_place")
     private Long id;
 
-    @Column(name = "id_room")
-    private Long idRoom;
-
     @Column(name = "row")
     private int row;
 
@@ -26,9 +23,7 @@ public class Place {
     public Place() {
     }
 
-    public Place(Long id, Long idRoom, int row, int place, boolean avalible) {
-        this.id = id;
-        this.idRoom = idRoom;
+    public Place(int row, int place, boolean avalible) {
         this.row = row;
         this.place = place;
         this.avalible = avalible;
@@ -40,14 +35,6 @@ public class Place {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdRoom() {
-        return idRoom;
-    }
-
-    public void setIdRoom(Long idRoom) {
-        this.idRoom = idRoom;
     }
 
     public int getRow() {

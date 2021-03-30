@@ -1,14 +1,34 @@
 package com.cinea.demo.dao.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Film")
 public class Film {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column//(name = "id_film")
+    private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "id_film_details")
+    private FilmDetails filmDetails;
+
+
+    public Film() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    /*
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
@@ -48,4 +68,6 @@ public class Film {
     public void setTitle(String title) {
         this.title = title;
     }
+
+     */
 }

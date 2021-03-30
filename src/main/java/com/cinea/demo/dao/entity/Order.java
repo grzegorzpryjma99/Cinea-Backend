@@ -1,6 +1,7 @@
 package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name ="Order")
@@ -11,14 +12,16 @@ public class Order {
     @Column(name = "id_order")
     private Long id;
 
-    @Column(name = "id_user")
+    @Column(name = "id_user") //TODO Zrobić relacje!!! jaka tu relacja?
     private Long idUser;
 
-    @Column(name = "id_screening")
-    private Long idScreening;
+    @OneToOne
+    @JoinColumn(name = "id_screening")
+    private Screening screening;
 
-    @Column(name = "id_ticket")
-    private Long idTicket;
+    @OneToMany
+    @JoinColumn(name = "id_ticket")
+    private List<Ticket> tickets;
 
     @Column(name = "status")
     private boolean status;
@@ -26,13 +29,13 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Long idUser, Long idScreening, Long idTicket, boolean status) {
-        this.id = id;
+    public Order(Long idUser, Screening screening, List<Ticket> tickets, boolean status) {
         this.idUser = idUser;
-        this.idScreening = idScreening;
-        this.idTicket = idTicket;
+        this.screening = screening;
+        this.tickets = tickets;
         this.status = status;
     }
+
 
     public Long getId() {
         return id;
@@ -50,27 +53,19 @@ public class Order {
         this.idUser = idUser;
     }
 
-    public Long getIdScreening() {
-        return idScreening;
-    }
-
-    public void setIdScreening(Long idScreening) {
-        this.idScreening = idScreening;
-    }
-
-    public Long getIdTicket() {
-        return idTicket;
-    }
-
-    public void setIdTicket(Long idTicket) {
-        this.idTicket = idTicket;
-    }
-
     public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

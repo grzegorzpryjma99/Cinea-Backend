@@ -1,6 +1,7 @@
 package com.cinea.demo.api;
 
 import com.cinea.demo.dao.entity.Film;
+import com.cinea.demo.manager.FilmDetailsManager;
 import com.cinea.demo.manager.FilmManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ public class FilmApi {
     public FilmApi(FilmManager films) {
         this.films = films;
     }
+
 
     @GetMapping("/all") //http://localhost:8080/api/films/all
     public Iterable<Film> getAll(){

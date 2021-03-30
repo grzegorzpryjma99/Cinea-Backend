@@ -1,5 +1,7 @@
 package com.cinea.demo.manager;
 
+
+import com.cinea.demo.dao.FilmDetailsRepo;
 import com.cinea.demo.dao.FilmRepo;
 import com.cinea.demo.dao.entity.Film;
 import com.cinea.demo.dao.entity.FilmDetails;
@@ -11,37 +13,34 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class FilmManager {
+public class FilmDetailsManager {
 
-    private FilmRepo filmRepo;
+    private FilmDetailsRepo filmDetailsRepo;
 
     @Autowired
-    public FilmManager(FilmRepo filmRepo) {
-        this.filmRepo = filmRepo;
+    public FilmDetailsManager(FilmDetailsRepo filmRepo) {
+        this.filmDetailsRepo = filmRepo;
     }
 
-    public Optional<Film> findById(Long id) {
-        return filmRepo.findById(id);
+    public Optional<FilmDetails> findById(Long id) {
+        return filmDetailsRepo.findById(id);
     }
 
-    public Iterable<Film> findAll() {
-        return filmRepo.findAll();
+    public Iterable<FilmDetails> findAll() {
+        return filmDetailsRepo.findAll();
     }
 
-    public Film save(Film film) {
-        return filmRepo.save(film);
+    public FilmDetails save(FilmDetails filmDetails) {
+        return filmDetailsRepo.save(filmDetails);
     }
 
     public void deleteById(Long id) {
-        filmRepo.deleteById(id);
+        filmDetailsRepo.deleteById(id);
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-        //save(new Film(1L,"Film1","Kraków"));
-        //save(new Film(2L,"Film2","Rzeszów"));
-        save(new Film());
-        save(new Film());
+        //save(new FilmDetails(1L,"d","das"));
     }
 
 }

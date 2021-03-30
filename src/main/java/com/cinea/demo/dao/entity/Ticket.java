@@ -27,8 +27,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(Long id, Long idOrder, Long idRoom, String type, BigDecimal price) {
-        this.id = id;
+    public Ticket(Long idOrder, Long idRoom, String type, BigDecimal price) {
         this.idOrder = idOrder;
         this.idRoom = idRoom;
         this.type = type;

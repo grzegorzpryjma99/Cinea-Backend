@@ -1,6 +1,9 @@
 package com.cinea.demo.dao.entity;
 
+import org.springframework.context.annotation.EnableMBeanExport;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name ="Room")
@@ -11,15 +14,19 @@ public class Room {
     @Column(name = "id_room")
     private Long id;
 
-    @Column(name = "id_place")
-    private Long idPlace;
+    @OneToMany
+    @JoinColumn(name = "id_room")
+    private List<Place> places;
 
     public Room() {
     }
 
-    public Room(Long id, Long idPlace) {
-        this.id = id;
-        this.idPlace = idPlace;
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
     }
 
     public Long getId() {
@@ -30,11 +37,4 @@ public class Room {
         this.id = id;
     }
 
-    public Long getIdPlace() {
-        return idPlace;
-    }
-
-    public void setIdPlace(Long idPlace) {
-        this.idPlace = idPlace;
-    }
 }

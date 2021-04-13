@@ -1,29 +1,42 @@
 package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="User")
-public class User {
+@Table(name="users")
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column//(name="id_user")
+    @Column
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id_user_details")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user_details", referencedColumnName = "id")
     private UserDetails userDetails;
 
-    @OneToOne
-    @JoinColumn(name = "id_role")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_role", referencedColumnName = "id")
     private Roles role;
 
-    @Column
+    //@JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Logs> logs = new HashSet<>();
+
+    @Column(unique = true)
     private String email;
 
     @Column
     private String password;
+
+    @Column
+    private String salt;
+
+    @Column
+    private String logged;
 
 
     public User(String email, String password) {
@@ -32,6 +45,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 
     public Long getId() {

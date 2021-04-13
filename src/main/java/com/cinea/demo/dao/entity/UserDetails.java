@@ -1,7 +1,7 @@
 package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name ="User_details")
@@ -10,7 +10,7 @@ public class UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_user_details")
+    @Column
     private Long id;
 
     @Column
@@ -20,15 +20,18 @@ public class UserDetails {
     private String surname;
 
     @Column
-    private String birthday; //TODO zmienić na Date
+    private Date birthday;
 
     @Column
     private Long phone;
 
+    @OneToOne(mappedBy = "userDetails")
+    private User user;
+
     public UserDetails() {
     }
 
-    public UserDetails(String name, String surname, String birthday, Long phone) {
+    public UserDetails(String name, String surname, Date birthday, Long phone) {
         this.name = name;
         this.surname = surname;
         this.birthday = birthday;
@@ -59,11 +62,11 @@ public class UserDetails {
         this.surname = surname;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

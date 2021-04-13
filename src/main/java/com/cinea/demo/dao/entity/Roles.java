@@ -10,11 +10,14 @@ public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_roles")
+    @Column
     private Long id;
 
     @Column(name ="user_type")
     private String userType; //TODO Zrobić typ enum
+
+    @OneToOne(mappedBy = "role")
+    private User user;
 
     public Roles() {
     }

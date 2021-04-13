@@ -1,4 +1,4 @@
-package com.cinea.demo.dao;
+package com.cinea.demo.dao.repositories;
 
 import com.cinea.demo.dao.entity.Film;
 import com.cinea.demo.dao.entity.FilmDetails;

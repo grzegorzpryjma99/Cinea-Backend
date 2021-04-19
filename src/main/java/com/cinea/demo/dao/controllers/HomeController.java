@@ -1,4 +1,4 @@
-package com.cinea.demo;
+package com.cinea.demo.dao.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

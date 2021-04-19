@@ -1,6 +1,6 @@
-package com.cinea.demo.api;
+package com.cinea.demo.dao.controllers;
 
-import com.cinea.demo.dao.entity.Film;
+
 import com.cinea.demo.dao.entity.User;
 import com.cinea.demo.dao.entity.UserDetails;
 import com.cinea.demo.dao.repositories.UserRepository;
@@ -24,11 +24,6 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/all") //http://localhost:8080/api/films/all
-    public Iterable<User> getAll(){
-        return userRepository.findAll();
-    }
-
     @GetMapping("/")
     public List<User> getUsers(){
         List<User> users = new ArrayList<>();
@@ -37,15 +32,15 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    //@Nullable
+    @Nullable
     public User getUser(@PathVariable("id") Long id){
         Optional<User> optionalUser = userRepository.findById(id);
 
         return optionalUser.orElse(null);
     }
-/*
+
     @PutMapping(path = "/{id}/edit", consumes = "application/json")
-    //@Nullable
+    @Nullable
     public User editUser(@RequestBody UserDetails details, @PathVariable("id") Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         optionalUser.ifPresent(value->{
@@ -54,6 +49,4 @@ public class UserController {
         });
         return optionalUser.orElse(null);
     }
-
- */
 }

@@ -17,7 +17,7 @@ import java.nio.file.Files;
 public class DataBaseInit {
 
     /**
-     * Required file {@code resources/dbConnectionInfo.json}
+     * Required file {@code dbConnectionInfo.json}
      * <pre>{@code
      * {
      *   url : string,

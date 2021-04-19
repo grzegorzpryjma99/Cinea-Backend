@@ -1,26 +1,32 @@
 package com.cinea.demo.dao.services;
-import com.cinea.demo.dao.entity.Logs;
 import com.cinea.demo.dao.entity.User;
-import com.cinea.demo.dao.entity.UserDetails;
-import com.cinea.demo.dao.repositories.FilmRepo;
-import com.cinea.demo.dao.entity.Film;
+import com.cinea.demo.dao.repositories.LogRepository;
 import com.cinea.demo.dao.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    private  final UserRepository userRepository;
+    private final LogRepository logRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, LogRepository logRepository) {
         this.userRepository = userRepository;
+        this.logRepository = logRepository;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public LogRepository getLogRepository() {
+        return logRepository;
     }
 
     public Optional<User> findById(Long id) {
@@ -42,8 +48,8 @@ public class UserService {
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
        //Date d = new Date(1999-01-01);
-       // User u = new User("user@gmail.com","user1");
-       // save(u);
+        //User u = new User("admin@admin.pl","admin");
+        //save(u);
        // Logs l = new Logs("1",u);
        // UserDetails ud = new UserDetails("ds","das",d,999L);
     }

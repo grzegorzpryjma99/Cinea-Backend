@@ -1,7 +1,7 @@
 package com.cinea.demo.manager;
 
 
-import com.cinea.demo.dao.repositories.FilmDetailsRepo;
+import com.cinea.demo.dao.repositories.FilmDetailsRepository;
 import com.cinea.demo.dao.entity.FilmDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -13,27 +13,27 @@ import java.util.Optional;
 @Service
 public class FilmDetailsManager {
 
-    private FilmDetailsRepo filmDetailsRepo;
+    private FilmDetailsRepository filmDetailsRepository;
 
     @Autowired
-    public FilmDetailsManager(FilmDetailsRepo filmRepo) {
-        this.filmDetailsRepo = filmRepo;
+    public FilmDetailsManager(FilmDetailsRepository filmRepo) {
+        this.filmDetailsRepository = filmRepo;
     }
 
     public Optional<FilmDetails> findById(Long id) {
-        return filmDetailsRepo.findById(id);
+        return filmDetailsRepository.findById(id);
     }
 
     public Iterable<FilmDetails> findAll() {
-        return filmDetailsRepo.findAll();
+        return filmDetailsRepository.findAll();
     }
 
     public FilmDetails save(FilmDetails filmDetails) {
-        return filmDetailsRepo.save(filmDetails);
+        return filmDetailsRepository.save(filmDetails);
     }
 
     public void deleteById(Long id) {
-        filmDetailsRepo.deleteById(id);
+        filmDetailsRepository.deleteById(id);
     }
 
     @EventListener(ApplicationReadyEvent.class)

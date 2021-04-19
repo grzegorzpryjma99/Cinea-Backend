@@ -1,21 +1,26 @@
 package com.cinea.demo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-@Table(name ="User_details")
-public class UserDetails {
+@Table(name ="user_details")
+public class UserDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column
     private Long id;
 
+    @NotEmpty
     @Column
     private String name;
 
+    @NotEmpty
     @Column
     private String surname;
 
@@ -25,6 +30,7 @@ public class UserDetails {
     @Column
     private Long phone;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "userDetails")
     private User user;
 

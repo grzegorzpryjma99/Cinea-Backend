@@ -1,10 +1,11 @@
 package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name ="Film_details")
-public class FilmDetails {
+public class FilmDetails implements Serializable {
 
 
     @Id

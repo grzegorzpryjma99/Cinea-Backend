@@ -1,4 +1,4 @@
-package com.cinea.demo.api;
+package com.cinea.demo.dao.controllers;
 
 import com.cinea.demo.dao.entity.Film;
 import com.cinea.demo.manager.FilmDetailsManager;
@@ -13,13 +13,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/films")   //adres aby dostac sie do API
 @CrossOrigin
-public class FilmApi {
+public class FilmController {
 
 
     private FilmManager films;
 
     @Autowired
-    public FilmApi(FilmManager films) {
+    public FilmController(FilmManager films) {
         this.films = films;
     }
 

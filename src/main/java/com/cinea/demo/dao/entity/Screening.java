@@ -2,10 +2,11 @@ package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
 import javax.xml.crypto.Data;
+import java.io.Serializable;
 
 @Entity
 @Table(name ="Screening")
-public class Screening {
+public class Screening implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,9 +1,13 @@
 package com.cinea.demo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="users")
@@ -11,32 +15,35 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
+    @NotEmpty
+    @Column(unique = true)
+    private String email;
+
+    @NotEmpty
+    private String password;
+
+    @Transient
+    private String confirmedPassword;
+
+    @NotEmpty
+    private String salt;
+
+    @NotNull
+    private String logged;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user_details", referencedColumnName = "id")
+    @JoinColumn(name = "user_details_id", referencedColumnName = "id")
     private UserDetails userDetails;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_role", referencedColumnName = "id")
     private Roles role;
 
-    //@JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Logs> logs = new HashSet<>();
-
-    @Column(unique = true)
-    private String email;
-
-    @Column
-    private String password;
-
-    @Column
-    private String salt;
-
-    @Column
-    private String logged;
+    private Set<Log> logs = new HashSet<>();
 
 
     public User(String email, String password) {

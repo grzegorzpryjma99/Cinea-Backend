@@ -3,21 +3,23 @@ package com.cinea.demo.dao.entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
 @Entity
-@Table(name ="logs")
-public class Logs {
-
+@Table(name ="user_logs")
+public class Log implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "session_id")
     private String sessionId;
 
+    @NotNull
     @Column(name = "log_time")
     private Timestamp logTime;
 
@@ -30,12 +32,12 @@ public class Logs {
         logTime = new Timestamp(System.currentTimeMillis());
     }
 
-    public Logs(String sessionId, User user) {
+    public Log(@NotNull String sessionId, User user) {
         this.sessionId = sessionId;
         this.user = user;
     }
 
-    public Logs() {
+    public Log() {
     }
 
     public Long getId() {

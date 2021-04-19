@@ -3,11 +3,12 @@ package com.cinea.demo.dao.entity;
 import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name ="Room")
-public class Room {
+public class Room implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

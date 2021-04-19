@@ -1,9 +1,9 @@
 package com.cinea.demo.dao.repositories;
 
-import com.cinea.demo.dao.entity.Log;
+import com.cinea.demo.dao.entity.FilmDetails;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LogRepository extends CrudRepository<Log, Long> {
+public interface FilmDetailsRepository extends CrudRepository<FilmDetails, Long> {
 }

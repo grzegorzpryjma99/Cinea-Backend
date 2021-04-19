@@ -1,10 +1,11 @@
 package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name ="Place")
-public class Place {
+public class Place implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

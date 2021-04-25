@@ -8,4 +8,5 @@ Cinema booking system. Web application for booking tickets at the cinema. Server
 * Hibernate
 * PostgreSQL
 
+## Check more
 https://github.com/grzegorzpryjma99/Cinea-Frontend

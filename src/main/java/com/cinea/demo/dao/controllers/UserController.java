@@ -6,13 +6,15 @@ import com.cinea.demo.dao.entity.UserDetails;
 import com.cinea.demo.dao.repositories.UserRepository;
 import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -39,14 +41,17 @@ public class UserController {
         return optionalUser.orElse(null);
     }
 
+    //edit user details
     @PutMapping(path = "/{id}/edit", consumes = "application/json")
-    @Nullable
-    public User editUser(@RequestBody UserDetails details, @PathVariable("id") Long id) {
+    public ResponseEntity<String> editUserDetails(@RequestBody UserDetails details, @PathVariable("id") Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        optionalUser.ifPresent(value->{
-            value.setUserDetails(details);
-            userRepository.save(value);
-        });
-        return optionalUser.orElse(null);
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setUserDetails(details);
+            userRepository.save(user);
+            return new ResponseEntity<>("User edited successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 }

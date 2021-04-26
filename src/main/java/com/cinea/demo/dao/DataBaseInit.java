@@ -16,18 +16,6 @@ import java.nio.file.Files;
 @Configuration
 public class DataBaseInit {
 
-    /**
-     * Required file {@code dbConnectionInfo.json}
-     * <pre>{@code
-     * {
-     *   url : string,
-     *   user : string,
-     *   password : string
-     * }
-     * }</pre>
-     * @return datasource
-     * @throws IOException failed to read file
-     */
     @Bean
     public DataSource dataSource() throws IOException{
         Logger logger = LoggerFactory.getLogger(DataBaseInit.class);

@@ -10,18 +10,17 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_order")
     private Long id;
 
-    @Column(name = "id_user") //TODO Zrobić relacje!!! jaka tu relacja?
-    private Long idUser;
+    @ManyToOne
+    private User user;
 
-    @OneToOne
-    @JoinColumn(name = "id_screening")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "screening_id", referencedColumnName = "id")
     private Screening screening;
 
     @OneToMany
-    @JoinColumn(name = "id_ticket")
+    @JoinColumn(name = "id_ticket")//TODO sprawdzic ta relacje
     private List<Ticket> tickets;
 
     @Column(name = "status")
@@ -30,13 +29,28 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long idUser, Screening screening, List<Ticket> tickets, boolean status) {
-        this.idUser = idUser;
+    public Order(User user, Screening screening, List<Ticket> tickets, boolean status) {
+        this.user = user;
         this.screening = screening;
         this.tickets = tickets;
         this.status = status;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Screening getScreening() {
+        return screening;
+    }
+
+    public void setScreening(Screening screening) {
+        this.screening = screening;
+    }
 
     public Long getId() {
         return id;
@@ -44,14 +58,6 @@ public class Order implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
     }
 
     public boolean isStatus() {

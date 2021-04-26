@@ -1,5 +1,7 @@
 package com.cinea.demo.dao.services;
+
 import com.cinea.demo.dao.entity.User;
+import com.cinea.demo.dao.entity.UserDetails;
 import com.cinea.demo.dao.repositories.LogRepository;
 import com.cinea.demo.dao.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.Optional;
 
 @Service
@@ -48,7 +51,9 @@ public class UserService {
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
        //Date d = new Date(1999-01-01);
-        //User u = new User("admin@admin.pl","admin");
+        //UserDetails details = new UserDetails("Grzegorz","Pryjma", Date.valueOf("1999-03-03"), 785012132L);
+        //User u = new User("admin@admin.pl","admin",details);
+
         //save(u);
        // Logs l = new Logs("1",u);
        // UserDetails ud = new UserDetails("ds","das",d,999L);

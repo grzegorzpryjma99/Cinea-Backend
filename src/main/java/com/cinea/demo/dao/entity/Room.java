@@ -1,5 +1,6 @@
 package com.cinea.demo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
@@ -12,12 +13,15 @@ public class Room implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_room")
     private Long id;
 
     @OneToMany
     @JoinColumn(name = "id_room")
     private List<Place> places;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "room")
+    private Screening screening;
 
     public Room() {
     }

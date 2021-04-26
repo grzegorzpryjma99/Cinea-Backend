@@ -1,38 +1,43 @@
 package com.cinea.demo.dao.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name ="Ticket")
 public class Ticket implements Serializable {
-
+//TODO zrobic relacje Order-ticket
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_ticket")
     private Long id;
 
-    @Column(name = "id_order")
-    private Long idOrder;
-
-    @Column(name = "id_room")
+    @Column
     private Long idRoom;
 
-    @Column(name = "type")
-    private String type;//TODO zmienic na enum
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TicketTypes ticketTypes;
 
-    @Column(name = "price")
+    @Column
     private BigDecimal price;
 
     public Ticket() {
     }
 
-    public Ticket(Long idOrder, Long idRoom, String type, BigDecimal price) {
-        this.idOrder = idOrder;
+    public Ticket(Long idRoom, TicketTypes ticketTypes, BigDecimal price) {
         this.idRoom = idRoom;
-        this.type = type;
+        this.ticketTypes = ticketTypes;
         this.price = price;
+    }
+
+    public TicketTypes getTicketTypes() {
+        return ticketTypes;
+    }
+
+    public void setTicketTypes(TicketTypes ticketTypes) {
+        this.ticketTypes = ticketTypes;
     }
 
     public Long getId() {
@@ -43,28 +48,12 @@ public class Ticket implements Serializable {
         this.id = id;
     }
 
-    public Long getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(Long idOrder) {
-        this.idOrder = idOrder;
-    }
-
     public Long getIdRoom() {
         return idRoom;
     }
 
     public void setIdRoom(Long idRoom) {
         this.idRoom = idRoom;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public BigDecimal getPrice() {

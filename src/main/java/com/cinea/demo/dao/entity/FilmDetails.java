@@ -1,7 +1,13 @@
 package com.cinea.demo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Table(name ="Film_details")
@@ -10,61 +16,44 @@ public class FilmDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_film_details")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id_category")
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Categories category;
 
-    @Column(name = "title")
+    @Column
     private String title;
 
-    @Column(name = "description")
+    @Column
     private String description;
 
-    @Column(name="trailer")
+    @Column
     private String trailer;
 
-    @Column(name="time")
-    private String time;
+    @Column
+    private Time time;
 
-    @Column(name="release_date")
-    private String releaseDate;
+    @Column
+    private Date releaseDate;
 
-    public String getTrailer() {
-        return trailer;
-    }
+    @JsonIgnore
+    @OneToOne(mappedBy = "filmDetails")
+    private Film film;
 
-    public void setTrailer(String trailer) {
-        this.trailer = trailer;
-    }
 
-    public String getTime() {
-        return time;
-    }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public FilmDetails() {
-    }
-
-    public FilmDetails(String title, String description, String trailer, String time, String releaseDate) {
+    public FilmDetails(Categories category, String title, String description, String trailer, Time time, Date releaseDate) {
+        this.category = category;
         this.title = title;
         this.description = description;
         this.trailer = trailer;
         this.time = time;
         this.releaseDate = releaseDate;
+        this.film = film;
+    }
+
+    public FilmDetails() {
     }
 
     public Long getId() {
@@ -73,6 +62,14 @@ public class FilmDetails implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Categories getCategory() {
+        return category;
+    }
+
+    public void setCategory(Categories category) {
+        this.category = category;
     }
 
     public String getTitle() {
@@ -89,5 +86,37 @@ public class FilmDetails implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 }

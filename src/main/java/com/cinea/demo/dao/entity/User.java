@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -30,29 +31,79 @@ public class User implements Serializable {
     @NotEmpty
     private String salt;
 
+    private Boolean logged;
+
     @NotNull
-    private String logged;
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details_id", referencedColumnName = "id")
     private UserDetails userDetails;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_role", referencedColumnName = "id")
-    private Roles role;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Log> logs = new HashSet<>();
 
-
-    public User(String email, String password) {
+    public User(@NotEmpty String email, @NotEmpty String password, UserDetails userDetails) {
         this.email = email;
         this.password = password;
+        this.userDetails = userDetails;
     }
+
 
     public User() {
     }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Boolean getLogged() {
+        return logged;
+    }
+
+    public void setLogged(Boolean logged) {
+        this.logged = logged;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(Set<Log> logs) {
+        this.logs = logs;
+    }
+
+    @PrePersist
+    public void setUser() {
+        this.logged = true;
+        this.role = Roles.ROLE_USER;
+    }
+
 
     public UserDetails getUserDetails() {
         return userDetails;

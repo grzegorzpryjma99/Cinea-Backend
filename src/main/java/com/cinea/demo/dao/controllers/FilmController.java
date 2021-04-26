@@ -1,53 +1,50 @@
 package com.cinea.demo.dao.controllers;
 
 import com.cinea.demo.dao.entity.Film;
-import com.cinea.demo.manager.FilmDetailsManager;
-import com.cinea.demo.manager.FilmManager;
+import com.cinea.demo.dao.repositories.FilmRepository;
+import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-@RestController
-@RequestMapping("/api/films")   //adres aby dostac sie do API
 @CrossOrigin
+@RestController
+@RequestMapping("/api/films")
 public class FilmController {
 
 
-    private FilmManager films;
+    private FilmRepository filmRepository;
 
     @Autowired
-    public FilmController(FilmManager films) {
-        this.films = films;
+    public FilmController(FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
     }
 
 
-    @GetMapping("/all") //http://localhost:8080/api/films/all
-    public Iterable<Film> getAll(){
-        return films.findAll();
+    @GetMapping("/") //http://localhost:8080/api/films/
+    public List<Film> getFilms(){
+        List<Film> films = new ArrayList<>();
+        filmRepository.findAll().forEach(films::add);
+        return films;
     }
 
-    @GetMapping
-    public Optional<Film> getById(@RequestParam Long index){
-
-        return films.findById(index);
+    @GetMapping("/{id}")
+    @Nullable
+    public Film getFilm(@PathVariable("id") Long id){
+        Optional<Film> optionalFilm = filmRepository.findById(id);
+        return optionalFilm.orElse(null);
     }
 
-    @PostMapping
-    public Film addVideo(@RequestBody Film film){
-        return films.save(film);
+    @PostMapping(value = "/add", consumes = "application/json")
+    public ResponseEntity<String> addFilm(@RequestBody Film film){
+        film.setFilmDetails(film.getFilmDetails());
+        filmRepository.save(film);
+        return new ResponseEntity<>("Film added successfully", HttpStatus.OK);
     }
-
-    @PutMapping //przebudowuje elementy
-    public Film updateVideo(@RequestBody Film film){
-        return films.save(film);
-    }
-
-    @DeleteMapping
-    public void deleteVideo(@RequestParam Long index){
-        films.deleteById(index);
-    }
-
 }
+

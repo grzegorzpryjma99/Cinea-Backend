@@ -39,6 +39,19 @@ public class Screening implements Serializable {
         this.date = date;
     }
 
+    public Screening(Film film, Date date) {
+        this.film = film;
+        this.date = date;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
     public Screening(Date date) {
         this.date = date;
     }

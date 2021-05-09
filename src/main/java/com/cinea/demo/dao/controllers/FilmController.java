@@ -5,7 +5,6 @@ import com.cinea.demo.dao.repositories.FilmRepository;
 import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +44,12 @@ public class FilmController {
         film.setFilmDetails(film.getFilmDetails());
         filmRepository.save(film);
         return new ResponseEntity<>("Film added successfully", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<String> deleteFilm(@PathVariable Long id){
+        filmRepository.deleteById(id);
+        return new ResponseEntity<>("Film id= " + id + "deleted successfully", HttpStatus.OK);
     }
 }
 

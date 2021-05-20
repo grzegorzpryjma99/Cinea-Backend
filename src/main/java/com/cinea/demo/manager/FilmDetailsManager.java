@@ -1,8 +1,8 @@
 package com.cinea.demo.manager;
 
 
-import com.cinea.demo.dao.repositories.FilmDetailsRepository;
-import com.cinea.demo.dao.entity.FilmDetails;
+import com.cinea.demo.repositories.FilmDetailsRepository;
+import com.cinea.demo.entity.FilmDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;

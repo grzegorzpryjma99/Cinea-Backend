@@ -1,10 +1,9 @@
 package com.cinea.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 @Entity
 @Table(name ="Screening")
@@ -25,12 +24,9 @@ public class Screening implements Serializable {
     @Column
     private Timestamp dateTime;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "screening")
-    private Order order;
-
-    public Screening() {
-    }
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "screening")
+//    private Order order;
 
     public Screening(Film film, Room room, Timestamp dateTime) {
         this.film = film;
@@ -38,6 +34,8 @@ public class Screening implements Serializable {
         this.dateTime = dateTime;
     }
 
+    public Screening() {
+    }
 
     public Film getFilm() {
         return film;

@@ -18,6 +18,17 @@ public class Room implements Serializable {
     @JoinColumn(name = "id_room")
     private List<Place> places;
 
+    @Column
+    private String name;
+
+    public Screening getScreening() {
+        return screening;
+    }
+
+    public void setScreening(Screening screening) {
+        this.screening = screening;
+    }
+
     @JsonIgnore
     @OneToOne(mappedBy = "room")
     private Screening screening;
@@ -31,6 +42,14 @@ public class Room implements Serializable {
 
     public void setPlaces(List<Place> places) {
         this.places = places;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {

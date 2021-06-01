@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping("/api/films")
 public class FilmController {
 
-
     private FilmRepository filmRepository;
 
     @Autowired
@@ -35,8 +34,8 @@ public class FilmController {
     @GetMapping("/{id}")
     @Nullable
     public Film getFilm(@PathVariable("id") Long id){
-        Optional<Film> optionalFilm = filmRepository.findById(id);
-        return optionalFilm.orElse(null);
+        Film optionalFilm = filmRepository.getOne(id);
+        return optionalFilm;
     }
 
     @PostMapping(value = "/add", consumes = "application/json")

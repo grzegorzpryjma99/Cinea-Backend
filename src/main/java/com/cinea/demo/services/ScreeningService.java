@@ -28,10 +28,10 @@ public class ScreeningService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){
-
-        FilmDetails filmDetails1 = new FilmDetails(Categories.AKCJA,"Szybcy i wściekli 1", "Policjant przenika do grupy organizującej nielegalne wyścigi samochodowe. Sytuacja komplikuje się, gdy poznaje bliżej siostrę lidera przestępców.",
-                "/youtube", Time.valueOf("1:30:00"), Date.valueOf("2001-06-18"));
-        Film film1 = new Film(filmDetails1);
+//
+//        FilmDetails filmDetails1 = new FilmDetails(Categories.AKCJA,"Szybcy i wściekli 1", "Policjant przenika do grupy organizującej nielegalne wyścigi samochodowe. Sytuacja komplikuje się, gdy poznaje bliżej siostrę lidera przestępców.",
+//                "/youtube", Time.valueOf("1:30:00"), Date.valueOf("2001-06-18"));
+//        Film film1 = new Film(filmDetails1);
 
         //save(new Film(1L,"Film1","Kraków"));
         //new Film();

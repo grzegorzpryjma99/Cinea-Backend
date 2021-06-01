@@ -17,7 +17,7 @@ public class JwtUtils {
     @Value("${cinea.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${cinea.app.jwtExpirationMs}") //TODO
+    @Value("${cinea.app.jwtExpirationMs}") //czas życia tokena
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {

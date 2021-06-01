@@ -19,8 +19,8 @@ public class FilmService {
         this.filmRepository = filmRepository;
     }
 
-    public Optional<Film> findById(Long id) {
-        return filmRepository.findById(id);
+    public Film findById(Long id) {
+        return filmRepository.getOne(id);
     }
 
     public Iterable<Film> findAll() {

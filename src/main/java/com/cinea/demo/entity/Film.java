@@ -33,6 +33,14 @@ public class Film implements Serializable {
         return filmDetails;
     }
 
+    public Screening getScreening() {
+        return screening;
+    }
+
+    public void setScreening(Screening screening) {
+        this.screening = screening;
+    }
+
     public void setFilmDetails(FilmDetails filmDetails) {
         this.filmDetails = filmDetails;
     }

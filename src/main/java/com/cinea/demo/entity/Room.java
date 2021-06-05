@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name ="Room")
@@ -21,17 +22,20 @@ public class Room implements Serializable {
     @Column
     private String name;
 
-    public Screening getScreening() {
-        return screening;
-    }
+//    public Screening getScreening() {
+//        return screening;
+//    }
+//
+//    public void setScreening(Screening screening) {
+//        this.screening = screening;
+//    }
 
-    public void setScreening(Screening screening) {
-        this.screening = screening;
-    }
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "room")
+//    private Screening screening;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "room")
-    private Screening screening;
+//    @OneToMany()
+//    private Set<Screening> screening;
 
     public Room() {
     }
@@ -51,6 +55,14 @@ public class Room implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+//    public Set<Screening> getScreening() {
+//        return screening;
+//    }
+//
+//    public void setScreening(Set<Screening> screening) {
+//        this.screening = screening;
+//    }
 
     public Long getId() {
         return id;

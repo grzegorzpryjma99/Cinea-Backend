@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "Film")
@@ -18,10 +19,14 @@ public class Film implements Serializable {
     @JoinColumn(name = "film_details_id", referencedColumnName = "id")
     private FilmDetails filmDetails;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "film")
-    private Screening screening;
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "film")
+//    private Screening screening;
 
+//    @OneToMany()
+//    private Set<Screening> screening;
+
+//TODO pusty screening tu jest + tak samo w room
     public Film(FilmDetails filmDetails) {
         this.filmDetails = filmDetails;
     }
@@ -33,13 +38,13 @@ public class Film implements Serializable {
         return filmDetails;
     }
 
-    public Screening getScreening() {
-        return screening;
-    }
-
-    public void setScreening(Screening screening) {
-        this.screening = screening;
-    }
+//    public Screening getScreening() {
+//        return screening;
+//    }
+//
+//    public void setScreening(Screening screening) {
+//        this.screening = screening;
+//    }
 
     public void setFilmDetails(FilmDetails filmDetails) {
         this.filmDetails = filmDetails;
@@ -54,4 +59,12 @@ public class Film implements Serializable {
     }
 
 
+
+//    public Set<Screening> getScreening() {
+//        return screening;
+//    }
+//
+//    public void setScreening(Set<Screening> screening) {
+//        this.screening = screening;
+//    }
 }

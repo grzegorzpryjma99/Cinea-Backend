@@ -2,6 +2,7 @@ package com.cinea.demo.services;
 
 import com.cinea.demo.entity.*;
 import com.cinea.demo.repositories.ScreeningRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -10,21 +11,26 @@ import com.cinea.demo.repositories.FilmRepository;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Optional;
 
 @Service
 public class ScreeningService {
 
     private ScreeningRepository screeningRepository;
-    private FilmRepository filmRepository;
 
+    @Autowired
+    public ScreeningService(ScreeningRepository screeningRepository) {
+        this.screeningRepository = screeningRepository;
+    }
+
+    public Optional<Screening> findById(Long id) {
+        return screeningRepository.findById(id);
+    }
 
     public Screening save(Screening screening) {
         return screeningRepository.save(screening);
     }
 
-    public Film savef(Film film) {
-        return filmRepository.save(film);
-    }
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB(){

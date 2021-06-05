@@ -33,8 +33,8 @@ public class FilmController {
 
     @GetMapping("/{id}")
     @Nullable
-    public Film getFilm(@PathVariable("id") Long id){
-        Film optionalFilm = filmRepository.getOne(id);
+    public Optional<Film> getFilm(@PathVariable("id") Long id){
+        Optional<Film> optionalFilm = filmRepository.findById(id);
         return optionalFilm;
     }
 

@@ -1,4 +1,4 @@
-package com.cinea.demo.manager;
+package com.cinea.demo.security.services;
 
 
 import com.cinea.demo.repositories.FilmDetailsRepository;

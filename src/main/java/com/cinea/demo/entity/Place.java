@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table(name ="Place")
 public class Place implements Serializable {
-//TODO Zrobić relacje dla Place-Room
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_place")

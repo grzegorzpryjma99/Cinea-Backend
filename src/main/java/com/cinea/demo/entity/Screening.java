@@ -1,15 +1,11 @@
 package com.cinea.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table(name ="Screening")
@@ -19,31 +15,22 @@ public class Screening implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "film_id", referencedColumnName = "id")
-//    private Film film;
-
     @ManyToOne
     private Film film;
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "room_id", referencedColumnName = "id")
-//
+
     @ManyToOne
     private Room room;
-
-//    @Column
-//    private Timestamp dateTime;
 
     @Column
     private Date date;
 
     @Column
     private Time time; //TODO many time, many date
-//    @JsonIgnore
-//    @OneToOne(mappedBy = "screening")
-//    private Order order;
 
+    @Column
+    @OneToMany
+    @JoinColumn(name = "id_screening")
+    private List<ZajeteMiejsca> zajeteMiejsca;
 
     public Screening(Film film, Room room, Date date, Time time) {
         this.film = film;
@@ -52,10 +39,13 @@ public class Screening implements Serializable {
         this.time = time;
     }
 
+    public List<ZajeteMiejsca> getZajeteMiejsca() {
+        return zajeteMiejsca;
+    }
 
-
-
-
+    public void setZajeteMiejsca(List<ZajeteMiejsca> zajeteMiejsca) {
+        this.zajeteMiejsca = zajeteMiejsca;
+    }
 
     public Screening() {
 
@@ -76,6 +66,7 @@ public class Screening implements Serializable {
     public Time getTime() {
         return time;
     }
+
 
     public void setTime(Time time) {
         this.time = time;

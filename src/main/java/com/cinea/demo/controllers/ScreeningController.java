@@ -62,4 +62,10 @@ public class ScreeningController {
 
         return new ResponseEntity<>("Screening added successfully", HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<String> deleteScreening(@PathVariable Long id){
+        screeningRepository.deleteById(id);
+        return new ResponseEntity<>("Screening id = " + id + " deleted successfully", HttpStatus.OK);
+    }
 }

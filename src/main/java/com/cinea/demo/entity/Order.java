@@ -15,25 +15,23 @@ public class Order implements Serializable {
     @ManyToOne
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "screening_id", referencedColumnName = "id")
-    private Screening screening;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "screening_id", referencedColumnName = "id")
+//    private Screening screening;
 
     @OneToMany
-    @JoinColumn(name = "id_ticket")//TODO sprawdzic ta relacje
+    @JoinColumn(name = "id_order")//TODO sprawdzic ta relacje
     private List<Ticket> tickets;
 
-    @Column(name = "status")
-    private boolean status;
+//    @Column(name = "status")
+//    private boolean status;
 
     public Order() {
     }
 
-    public Order(User user, Screening screening, List<Ticket> tickets, boolean status) {
+    public Order(User user, List<Ticket> tickets) {
         this.user = user;
-        this.screening = screening;
         this.tickets = tickets;
-        this.status = status;
     }
 
     public User getUser() {
@@ -44,28 +42,12 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public Screening getScreening() {
-        return screening;
-    }
-
-    public void setScreening(Screening screening) {
-        this.screening = screening;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public List<Ticket> getTickets() {

@@ -2,6 +2,7 @@ package com.cinea.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name ="Place")
@@ -18,16 +19,29 @@ public class Place implements Serializable {
     @Column(name = "place")
     private int place;
 
-    @Column(name = "acalible")
-    private boolean avalible;
+//    @Column
+//    @OneToMany
+//    @JoinColumn(name = "id_place")
+//    private List<Ticket> tickets;
+
+//    @Column(name = "acalible")
+//    private boolean avalible;
 
     public Place() {
     }
+//
+//    public List<Ticket> getTickets() {
+//        return tickets;
+//    }
+//
+//    public void setTickets(List<Ticket> tickets) {
+//        this.tickets = tickets;
+//    }
 
-    public Place(int row, int place, boolean avalible) {
+    public Place(int row, int place) {
         this.row = row;
         this.place = place;
-        this.avalible = avalible;
+
     }
 
     public Long getId() {
@@ -54,11 +68,11 @@ public class Place implements Serializable {
         this.place = place;
     }
 
-    public boolean isAvalible() {
-        return avalible;
-    }
-
-    public void setAvalible(boolean avalible) {
-        this.avalible = avalible;
-    }
+//    public boolean isAvalible() {
+//        return avalible;
+//    }
+//
+//    public void setAvalible(boolean avalible) {
+//        this.avalible = avalible;
+//    }
 }

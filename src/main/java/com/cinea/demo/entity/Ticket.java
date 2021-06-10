@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name ="Ticket")
@@ -13,9 +14,6 @@ public class Ticket implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Long idRoom;
-
     @NotNull
     @Enumerated(EnumType.STRING)
     private TicketTypes ticketTypes;
@@ -23,13 +21,62 @@ public class Ticket implements Serializable {
     @Column
     private BigDecimal price;
 
+    @ManyToOne
+    private Screening screening;
+
+    private Long orderId;
+
+    private Long placeId;
+//    @Column
+//    @ManyToOne
+//    //@JoinColumn(name = "id_place")
+//    private Ticket ticket;
+
+    public Ticket(TicketTypes ticketTypes, BigDecimal price, Screening screening, Long placeId) {
+        this.ticketTypes = ticketTypes;
+        this.price = price;
+        this.screening = screening;
+        this.placeId = placeId;
+    }
+
+    public Ticket(TicketTypes ticketTypes, BigDecimal price, Screening screening, Long orderId, Long placeId) {
+        this.ticketTypes = ticketTypes;
+        this.price = price;
+        this.screening = screening;
+        this.orderId = orderId;
+        this.placeId = placeId;
+    }
+
     public Ticket() {
     }
 
-    public Ticket(Long idRoom, TicketTypes ticketTypes, BigDecimal price) {
-        this.idRoom = idRoom;
+    public Ticket(TicketTypes ticketTypes, BigDecimal price) {
         this.ticketTypes = ticketTypes;
         this.price = price;
+    }
+
+    public Long getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(Long placeId) {
+        this.placeId = placeId;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Screening getScreening() {
+        return screening;
+    }
+
+    public void setScreening(Screening screening) {
+        this.screening = screening;
     }
 
     public TicketTypes getTicketTypes() {
@@ -46,14 +93,6 @@ public class Ticket implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdRoom() {
-        return idRoom;
-    }
-
-    public void setIdRoom(Long idRoom) {
-        this.idRoom = idRoom;
     }
 
     public BigDecimal getPrice() {

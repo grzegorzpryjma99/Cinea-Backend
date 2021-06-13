@@ -1,7 +1,6 @@
 package com.cinea.demo.services;
 
 import com.cinea.demo.entity.User;
-import com.cinea.demo.repositories.LogRepository;
 import com.cinea.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -14,21 +13,21 @@ import java.util.Optional;
 public class UserService {
 
     private  final UserRepository userRepository;
-    private final LogRepository logRepository;
+//    private final LogRepository logRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, LogRepository logRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.logRepository = logRepository;
+//        this.logRepository = logRepository;
     }
 
     public UserRepository getUserRepository() {
         return userRepository;
     }
 
-    public LogRepository getLogRepository() {
-        return logRepository;
-    }
+//    public LogRepository getLogRepository() {
+//        return logRepository;
+//    }
 
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);

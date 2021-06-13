@@ -30,18 +30,6 @@ public class User implements Serializable {
     @NotEmpty
     private String password;
 
-    @Transient
-    private String confirmedPassword;
-
-    @NotEmpty
-    private String salt;
-
-    private Boolean logged;
-
-//    @NotNull
-//    @Enumerated(EnumType.STRING)
-//    private Roles role;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -52,18 +40,11 @@ public class User implements Serializable {
     @JoinColumn(name = "user_details_id", referencedColumnName = "id")
     private UserDetails userDetails;
 
+
+//    @JsonIgnore
 //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<Order> orders;
+//    private Set<Log> logs = new HashSet<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Log> logs = new HashSet<>();
-
-    public User(@NotEmpty String email, @NotEmpty String password, UserDetails userDetails) {
-        this.email = email;
-        this.password = password;
-        this.userDetails = userDetails;
-    }
 
     public User(@NotEmpty String username, @NotEmpty String email, @NotEmpty String password) {
         this.email = email;
@@ -83,59 +64,20 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public Boolean getLogged() {
-        return logged;
-    }
-
-    public void setLogged(Boolean logged) {
-        this.logged = logged;
-    }
-
-//    public List<Order> getOrders() {
-//        return orders;
-//    }
-//
-//    public void setOrders(List<Order> orders) {
-//        this.orders = orders;
-//    }
-
-    public Set<Log> getLogs() {
-        return logs;
-    }
-
-    public void setLogs(Set<Log> logs) {
-        this.logs = logs;
-    }
-
-//    @PrePersist
-//    public void setUser() {
-//        this.logged = true;
-//        this.role = Roles.ROLE_USER;
-//    }
-
-
     public UserDetails getUserDetails() {
         return userDetails;
     }
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getId() {

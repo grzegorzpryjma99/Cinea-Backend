@@ -40,6 +40,15 @@ public class FilmDetails implements Serializable {
     @Column
     private String imageURL;
 
+    @Column
+    private String originalTitle;
+
+    @Column
+    private String director;
+
+    @Column
+    private  String staff;
+
     @JsonIgnore
     @OneToOne(mappedBy = "filmDetails")
     private Film film;
@@ -57,6 +66,20 @@ public class FilmDetails implements Serializable {
         this.imageURL = imageURL;
     }
 
+    public FilmDetails(Categories category, String title, String description, String trailer, Time time, Date releaseDate, String imageURL, String originalTitle,  String director, String staff, Film film) {
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.trailer = trailer;
+        this.time = time;
+        this.releaseDate = releaseDate;
+        this.imageURL = imageURL;
+        this.originalTitle = originalTitle;
+        this.director = director;
+        this.staff = staff;
+        this.film = film;
+    }
+
     public FilmDetails() {
     }
 
@@ -70,6 +93,30 @@ public class FilmDetails implements Serializable {
 
     public Categories getCategory() {
         return category;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getStaff() {
+        return staff;
+    }
+
+    public void setStaff(String staff) {
+        this.staff = staff;
     }
 
     public void setCategory(Categories category) {

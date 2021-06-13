@@ -24,7 +24,7 @@ public class Ticket implements Serializable {
     @ManyToOne
     private Screening screening;
 
-    private Long orderId;
+    private Long userId;
 
     private Long placeId;
 //    @Column
@@ -39,11 +39,11 @@ public class Ticket implements Serializable {
         this.placeId = placeId;
     }
 
-    public Ticket(TicketTypes ticketTypes, BigDecimal price, Screening screening, Long orderId, Long placeId) {
+    public Ticket(TicketTypes ticketTypes, BigDecimal price, Screening screening, Long userId, Long placeId) {
         this.ticketTypes = ticketTypes;
         this.price = price;
         this.screening = screening;
-        this.orderId = orderId;
+        this.userId = userId;
         this.placeId = placeId;
     }
 
@@ -63,12 +63,12 @@ public class Ticket implements Serializable {
         this.placeId = placeId;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Screening getScreening() {
@@ -101,5 +101,10 @@ public class Ticket implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Zakupiłeś bilet " + getTicketTypes() + " w cenie " + getPrice() + " twoje miejsce to " + getId() + " na film " + getScreening();
     }
 }

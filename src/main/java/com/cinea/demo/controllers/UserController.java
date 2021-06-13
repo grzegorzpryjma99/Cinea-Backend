@@ -2,12 +2,12 @@ package com.cinea.demo.controllers;
 
 
 import com.cinea.demo.entity.User;
-import com.cinea.demo.entity.UserDetails;
 import com.cinea.demo.repositories.UserRepository;
 import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -41,17 +41,17 @@ public class UserController {
         return optionalUser.orElse(null);
     }
 
-    //edit user details
-    @PutMapping(path = "/{id}/edit", consumes = "application/json")
-    public ResponseEntity<String> editUserDetails(@RequestBody UserDetails details, @PathVariable("id") Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if(optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setUserDetails(details);
-            userRepository.save(user);
-            return new ResponseEntity<>("User edited successfully", HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+//    //edit user details
+//    @PutMapping(path = "/{id}/edit", consumes = "application/json")
+//    public ResponseEntity<String> editUserDetails(@RequestBody UserDetails details, @PathVariable("id") Long id) {
+//        Optional<User> optionalUser = userRepository.findById(id);
+//        if(optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//            user.setUserDetails(details);
+//            userRepository.save(user);
+//            return new ResponseEntity<>("User edited successfully", HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 
 }

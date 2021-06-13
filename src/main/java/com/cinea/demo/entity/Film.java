@@ -67,4 +67,10 @@ public class Film implements Serializable {
 //    public void setScreening(Set<Screening> screening) {
 //        this.screening = screening;
 //    }
+
+
+    @Override
+    public String toString() {
+        return getFilmDetails().getTitle();
+    }
 }

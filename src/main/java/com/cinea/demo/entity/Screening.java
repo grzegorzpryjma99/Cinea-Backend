@@ -91,4 +91,9 @@ public class Screening implements Serializable {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    @Override
+    public String toString() {
+        return " Seans na film "  + getFilm() + " " + getDate() + " o godzinie " + getTime();
+    }
 }

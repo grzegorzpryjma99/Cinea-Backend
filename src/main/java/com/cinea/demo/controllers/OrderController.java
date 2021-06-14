@@ -66,12 +66,6 @@ public class OrderController {
         return orders;
     }
 
-
-
-
-
-
-
     @PostMapping(value = "/tickets/add", consumes = "application/json")
     public ResponseEntity<String> addTicket(@RequestBody Ticket ticket){
 
@@ -96,25 +90,11 @@ public class OrderController {
         return new ResponseEntity<>("Email sent successfully", HttpStatus.OK);
     }
 
-
-
-
-
-
-
-
-
-
-
-
     @PostMapping(value = "/order/add", consumes = "application/json")
     public ResponseEntity<String> addOrder(@RequestBody Order order){
 
         Order order1 = new Order(order.getUser(),order.getTickets());
         orderRepository.save(order1);
-
-
-
         return new ResponseEntity<>("Order added successfully", HttpStatus.OK);
     }
 }

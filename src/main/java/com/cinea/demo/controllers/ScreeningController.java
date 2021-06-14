@@ -33,7 +33,6 @@ public class ScreeningController {
         this.roomRepository = roomRepository;
     }
 
-
     @GetMapping("/")
     public List<Screening> getScreenings(){
         List<Screening> screenings = new ArrayList<>();
@@ -59,7 +58,6 @@ public class ScreeningController {
         System.out.println( screening.getRoom().getId()+ "roomu");
         System.out.println(room);
         screeningRepository.save(screening1);
-
         return new ResponseEntity<>("Screening added successfully", HttpStatus.OK);
     }
 

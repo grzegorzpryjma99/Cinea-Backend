@@ -36,22 +36,8 @@ public class UserController {
     @GetMapping("/{id}")
     @Nullable
     public User getUser(@PathVariable("id") Long id){
-        Optional<User> optionalUser = userRepository.findById(id);
 
+        Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.orElse(null);
     }
-
-//    //edit user details
-//    @PutMapping(path = "/{id}/edit", consumes = "application/json")
-//    public ResponseEntity<String> editUserDetails(@RequestBody UserDetails details, @PathVariable("id") Long id) {
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if(optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            user.setUserDetails(details);
-//            userRepository.save(user);
-//            return new ResponseEntity<>("User edited successfully", HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-
 }

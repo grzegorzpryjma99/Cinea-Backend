@@ -40,12 +40,6 @@ public class User implements Serializable {
     @JoinColumn(name = "user_details_id", referencedColumnName = "id")
     private UserDetails userDetails;
 
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Set<Log> logs = new HashSet<>();
-
-
     public User(@NotEmpty String username, @NotEmpty String email, @NotEmpty String password) {
         this.email = email;
         this.username = username;

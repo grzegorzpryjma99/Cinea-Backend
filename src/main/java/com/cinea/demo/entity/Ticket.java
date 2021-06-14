@@ -27,10 +27,6 @@ public class Ticket implements Serializable {
     private Long userId;
 
     private Long placeId;
-//    @Column
-//    @ManyToOne
-//    //@JoinColumn(name = "id_place")
-//    private Ticket ticket;
 
     public Ticket(TicketTypes ticketTypes, BigDecimal price, Screening screening, Long placeId) {
         this.ticketTypes = ticketTypes;

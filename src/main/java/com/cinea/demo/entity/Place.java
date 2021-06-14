@@ -19,24 +19,8 @@ public class Place implements Serializable {
     @Column(name = "place")
     private int place;
 
-//    @Column
-//    @OneToMany
-//    @JoinColumn(name = "id_place")
-//    private List<Ticket> tickets;
-
-//    @Column(name = "acalible")
-//    private boolean avalible;
-
     public Place() {
     }
-//
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
 
     public Place(int row, int place) {
         this.row = row;
@@ -68,11 +52,4 @@ public class Place implements Serializable {
         this.place = place;
     }
 
-//    public boolean isAvalible() {
-//        return avalible;
-//    }
-//
-//    public void setAvalible(boolean avalible) {
-//        this.avalible = avalible;
-//    }
 }

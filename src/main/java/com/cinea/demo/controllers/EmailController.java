@@ -4,10 +4,6 @@ import com.cinea.demo.entity.Ticket;
 import com.cinea.demo.entity.User;
 import com.cinea.demo.repositories.UserRepository;
 import com.cinea.demo.services.EmailSender;
-import lombok.SneakyThrows;
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
-import javax.json.stream.JsonParser;
-import java.io.PrintWriter;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller

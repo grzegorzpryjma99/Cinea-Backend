@@ -19,36 +19,8 @@ public class Room implements Serializable {
     @Column
     private String name;
 
-//    @Column
-//    @OneToMany
-//    @JoinColumn(name = "id_room")
-//    private List<ZajeteMiejsca> zajeteMiejsca;
-
-//    public Screening getScreening() {
-//        return screening;
-//    }
-//
-//    public void setScreening(Screening screening) {
-//        this.screening = screening;
-//    }
-
-//    @JsonIgnore
-//    @OneToOne(mappedBy = "room")
-//    private Screening screening;
-
-//    @OneToMany()
-//    private Set<Screening> screening;
-
     public Room() {
     }
-
-//    public List<ZajeteMiejsca> getZajeteMiejsca() {
-//        return zajeteMiejsca;
-//    }
-//
-//    public void setZajeteMiejsca(List<ZajeteMiejsca> zajeteMiejsca) {
-//        this.zajeteMiejsca = zajeteMiejsca;
-//    }
 
     public List<Place> getPlaces() {
         return places;
@@ -65,14 +37,6 @@ public class Room implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public Set<Screening> getScreening() {
-//        return screening;
-//    }
-//
-//    public void setScreening(Set<Screening> screening) {
-//        this.screening = screening;
-//    }
 
     public Long getId() {
         return id;

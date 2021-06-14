@@ -18,7 +18,6 @@ import java.util.Optional;
 public class RoomController {
 
     private RoomRepository roomRepository;
-
     public RoomController(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
     }
@@ -36,5 +35,4 @@ public class RoomController {
         Optional<Room> optionalRoom = roomRepository.findById(id);
         return optionalRoom.orElse(null);
     }
-
 }

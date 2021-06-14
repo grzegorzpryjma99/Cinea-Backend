@@ -15,16 +15,9 @@ public class Order implements Serializable {
     @ManyToOne
     private User user;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "screening_id", referencedColumnName = "id")
-//    private Screening screening;
-
     @OneToMany
     @JoinColumn(name = "id_order")//TODO sprawdzic ta relacje
     private List<Ticket> tickets;
-
-//    @Column(name = "status")
-//    private boolean status;
 
     public Order() {
     }

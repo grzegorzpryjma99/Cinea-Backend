@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name ="Ticket")
 public class Ticket implements Serializable {
-//TODO zrobic relacje Order-ticket
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
